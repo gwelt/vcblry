@@ -1,3 +1,4 @@
 {
-  "PORT": 3000
+  "PORT": 3000,
+  "server_URL": "https://localhost"
 }
