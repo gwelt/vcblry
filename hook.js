@@ -11,6 +11,7 @@ Hook.prototype.sendToDisk = function (diskid,msg) {
 		headers: { 'Content-Type': 'text/plain' }
 	})
 	.catch(err => {console.error(err); return;})
+	.then(res => {if (res) {return res.text()}})
 	.then(text => {}); //console.log('RESPONSE: '+text)
 }
 
@@ -23,6 +24,7 @@ Hook.prototype.json_sendToDisk = function (diskid,msg) {
 		headers: { 'Content-Type': 'application/json' }
 	})
 	.catch(err => {console.error(err); return;})
+	.then(res => {if (res) {return res.text()}})
 	.then(text => {}); //console.log('RESPONSE: '+text)
 }
 
@@ -31,6 +33,7 @@ Hook.prototype.readFromDisk = function (diskid,callback) {
 	fetch((config.server_URL||'http://localhost')+'/disk/'+diskid, {
 		method: 'GET'
 	})
-	.catch(err => {})
+	.catch(err => {console.error(err); return;})
+	.then(res => {if (res) {return res.text()}})
 	.then(text => {callback(text)}); //console.log('RESPONSE: '+text)
 }
