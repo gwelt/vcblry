@@ -11,7 +11,7 @@ Hook.prototype.sendToDisk = function (diskid,msg) {
 		headers: { 'Content-Type': 'text/plain' }
 	})
 	.catch(err => {console.error(err); return;})
-	.then(text => {console.log('RESPONSE: '+text)}); //console.log('RESPONSE: '+text)
+	.then(text => {}); //console.log('RESPONSE: '+text)
 }
 
 Hook.prototype.json_sendToDisk = function (diskid,msg) {
