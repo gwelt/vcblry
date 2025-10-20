@@ -1,6 +1,6 @@
 {
   "name": "VCBLRY*",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "server for vocabulary-sets and online vocabulary-trainer",
   "main": "index.js",
   "scripts": {

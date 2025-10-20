@@ -12,7 +12,7 @@ server.listen(port, function () {console.log('Server listening at port %d', port
 
 var list_of_Challenges = [];
 var examples = [ {"id" : "Tiere / animals", "list" : [ {"A" : "Hund", "B" : "dog"}, {"A" : "Katze", "B" : "cat"}, {"A" : "Maus", "B" : "mouse"} ]}, {"id" : "Fahrzeuge / vehicles", "list" : [ {"A" : "Auto", "B" : "car"}, {"A" : "Flugzeug", "B" : "plane"} ]} ];
-if (hook) {hook.readFromDisk('vcblry',(r)=>{let rx; try {rx=JSON.parse(r)} catch (e) {} if (rx) {let loc=[]; let ids=[]; while (rx.length) {let e=rx.pop(); if (!ids.includes(e.id)) {ids.push(e.id); if (e.list.length) {loc.push(e)}}} list_of_Challenges=loc;}})}
+if (hook) {hook.readFromDisk('vcblry',(r)=>{let rx; try {rx=JSON.parse(r)} catch (e) {} if (rx) {let loc=[]; let ids=[]; while (rx.length) {let e=rx.pop(); if (!ids.includes(e.id)) {ids.push(e.id); if (e.list&&e.list.length) {loc.push(e)}}}; console.log('Import success.'); list_of_Challenges=loc;}})}
 
 app.use(bodyParser.json({ strict: true }));
 app.use(function (error, req, res, next){next()}); // don't show error-message, if it's not JSON ... just ignore it
