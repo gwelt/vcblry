@@ -12,6 +12,7 @@ server.listen(port, function () {console.log('Server listening at port %d', port
 
 var list_of_Challenges = [];
 var examples = [ {"id" : "Tiere / animals", "list" : [ {"A" : "Hund", "B" : "dog"}, {"A" : "Katze", "B" : "cat"}, {"A" : "Maus", "B" : "mouse"} ]}, {"id" : "Fahrzeuge / vehicles", "list" : [ {"A" : "Auto", "B" : "car"}, {"A" : "Flugzeug", "B" : "plane"} ]} ];
+// if hook connects to a database, read all challenges, only use latest version of each id/challenge 
 if (hook) {hook.readFromDisk('vcblry',(r)=>{let rx; try {rx=JSON.parse(r)} catch (e) {} if (rx) {let loc=[]; let ids=[]; while (rx.length) {let e=rx.pop(); if (!ids.includes(e.id)) {ids.push(e.id); if (e.list&&e.list.length) {loc.push(e)}}}; console.log('Import success.'); list_of_Challenges=loc;}})}
 
 app.use(bodyParser.json({ strict: true }));
@@ -41,6 +42,7 @@ app.use('(/vcblry)?/:command', function (req, res, next) {
         switch (req.params.command) {
             case 'api':
             case 'API':
+                // if hook connects to a database, write current challenge
                 if (hook) {hook.sendToDisk('vcblry',JSON.stringify(req.body))}
                 list_of_Challenges=list_of_Challenges.filter((i)=>{return (req.body.id!=i.id) && (i.list) && (i.list.length>0) });
                 if (req.body.list.length>0) {list_of_Challenges.push(req.body)}
