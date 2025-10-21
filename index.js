@@ -8,7 +8,7 @@ var config = {};
 try {config=require('./config.json')} catch(err){};
 const port = config.PORT || process.env.PORT || 3000;
 try {const Hook=require('./hook.js'); var hook = new Hook();} catch(err){};
-server.listen(port, function () {console.log('Server listening at port %d', port)});
+server.listen(port, function () {console.log('\x1b[44m SERVER LISTENING ON PORT %d \x1b[0m', port)});
 
 var list_of_Challenges = [];
 var examples = [ {"id" : "Tiere / animals", "list" : [ {"A" : "Hund", "B" : "dog"}, {"A" : "Katze", "B" : "cat"}, {"A" : "Maus", "B" : "mouse"} ]}, {"id" : "Fahrzeuge / vehicles", "list" : [ {"A" : "Auto", "B" : "car"}, {"A" : "Flugzeug", "B" : "plane"} ]} ];
